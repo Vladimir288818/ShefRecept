@@ -1,5 +1,6 @@
 import os
 import psycopg2
+from fuzzywuzzy import process
 
 # Подключение к существующей базе данных PostgreSQL
 def create_connection():
@@ -27,7 +28,7 @@ def get_all_recipe_names():
         cursor.execute(query)
         names = cursor.fetchall()
         names = [name[0] for name in names]  # Извлекаем только названия
-    except sqlite3.Error as e:
+    except psycopg2.Error as e:
         print(f"Ошибка при выполнении запроса: {e}")
         names = []
     finally:
@@ -63,10 +64,10 @@ def get_recipe_by_name(recipe_name):
     
     try:
         # Получение рецепта по точному названию
-        query = "SELECT name, ingredients, instructions FROM recipes WHERE name = ?"
+        query = "SELECT name, ingredients, instructions FROM recipes WHERE name = %s"
         cursor.execute(query, (recipe_name,))
         recipe = cursor.fetchone()
-    except sqlite3.Error as e:
+    except psycopg2.Error as e:
         print(f"Ошибка при выполнении запроса: {e}")
         recipe = None
     finally:
