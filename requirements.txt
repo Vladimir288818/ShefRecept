@@ -1,3 +1,4 @@
+deep-translator
 aiosqlite==0.20.0
 python-dotenv==1.0.0
 SQLAlchemy==2.0.0
