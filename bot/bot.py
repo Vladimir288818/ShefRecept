@@ -73,20 +73,22 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
     ]
     await update.message.reply_text("\n".join(commands))
 
-"""Обработчик команды /profile."""
 async def profile_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Обработчик команды /profile, отправляет изображение с информацией о подписке."""
     try:
         # Отправка изображения с информацией о подписке
-        with open("assets/sub_info.png", "rb") as image_file:
+        image_path = "assets/sub_info.PNG"
+        with open(image_path, "rb") as image_file:
             await update.message.reply_photo(
                 photo=image_file,
                 caption="Информация о подписках. Ознакомьтесь с возможностями каждого плана."
             )
+        logger.info(f"Изображение {image_path} успешно отправлено.")
     except FileNotFoundError:
         await update.message.reply_text("Изображение с информацией о подписках не найдено.")
+        logger.error(f"Изображение {image_path} не найдено.")
     except Exception as e:
-        logger.error(f"Error in profile command: {e}")
+        logger.error(f"Ошибка в команде /profile: {e}")
         await update.message.reply_text("Произошла ошибка при загрузке информации. Попробуйте позже.")
 
 async def manage_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
