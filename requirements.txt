@@ -1,6 +1,5 @@
 python-telegram-bot>=20.0
 python-dotenv>=0.19.2
-sqlite3
 stripe>=2.60.0  
 yookassa>=3.0.0  
 python-dotenv==1.0.0
