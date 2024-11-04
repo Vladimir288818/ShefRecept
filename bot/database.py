@@ -1,12 +1,14 @@
-import sqlite3
-from fuzzywuzzy import process
+import os
+import psycopg2
 
-# Подключение к существующей базе данных SQLite
+# Подключение к существующей базе данных PostgreSQL
 def create_connection():
     try:
-        conn = sqlite3.connect('C:/Users/WIN10/Desktop/culinary_bot/recipes.db')  # Путь к базе данных
+        # URL базы данных из переменной окружения
+        DATABASE_URL = os.environ.get("DATABASE_URL")
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         return conn
-    except sqlite3.Error as e:
+    except psycopg2.Error as e:
         print(f"Ошибка при подключении к базе данных: {e}")
         return None
 
