@@ -7,9 +7,12 @@ def create_connection():
     try:
         # URL базы данных из переменной окружения
         DATABASE_URL = os.environ.get("DATABASE_URL")
+        if DATABASE_URL is None:
+            raise ValueError("DATABASE_URL не установлена в переменных окружения")
+        
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         return conn
-    except psycopg2.Error as e:
+    except (psycopg2.Error, ValueError) as e:
         print(f"Ошибка при подключении к базе данных: {e}")
         return None
 
@@ -47,11 +50,10 @@ def fuzzy_search_recipe_by_name(recipe_name):
     # Нечеткий поиск для нахождения наиболее похожего названия
     closest_match = process.extractOne(recipe_name, all_names)
     
-    if closest_match[1] < 70:  # Если совпадение меньше 70%, считаем, что рецепт не найден
-        return None
+    if closest_match and closest_match[1] >= 70:  # Пороговое значение совпадения 70%
+        return closest_match[0]
     
-    # Если найдено совпадение, возвращаем полное название рецепта
-    return closest_match[0]
+    return None
 
 # Поиск рецепта по точному названию (для получения полного рецепта)
 def get_recipe_by_name(recipe_name):
