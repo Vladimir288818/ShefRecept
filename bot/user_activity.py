@@ -1,11 +1,12 @@
-import sqlite3
+import os
+import psycopg2
 from datetime import datetime
 
-# Создаем соединение с базой данных
+# Создаем соединение с базой данных PostgreSQL
 def create_connection():
-    # Для удобства путь к базе данных можно передавать через переменную окружения
-    db_path = 'C:/Users/WIN10/Desktop/culinary_bot/users.db'  # Укажите путь к базе данных
-    conn = sqlite3.connect(db_path)
+    # Используем переменную окружения DATABASE_URL для подключения к PostgreSQL
+    db_url = os.environ.get("DATABASE_URL")
+    conn = psycopg2.connect(db_url)
     return conn
 
 # Создаем таблицу для пользователей
@@ -14,7 +15,7 @@ def create_users_table():
     cursor = conn.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL PRIMARY KEY,
             user_id TEXT UNIQUE,  -- Уникальный ID пользователя
             first_interaction TIMESTAMP  -- Время первого взаимодействия
         )
@@ -28,12 +29,12 @@ def log_user_interaction(user_id):
     conn = create_connection()
     cursor = conn.cursor()
     try:
-        cursor.execute("INSERT INTO users (user_id, first_interaction) VALUES (?, ?)", 
+        cursor.execute("INSERT INTO users (user_id, first_interaction) VALUES (%s, %s)", 
                        (user_id, datetime.now()))
         conn.commit()
-    except sqlite3.IntegrityError:
+    except psycopg2.IntegrityError:
         # Если пользователь уже существует, просто игнорируем
-        pass
+        conn.rollback()
     finally:
         cursor.close()  # Закрываем курсор
         if conn:
@@ -43,7 +44,7 @@ def log_user_interaction(user_id):
 def get_users_count(start_date, end_date):
     conn = create_connection()
     cursor = conn.cursor()
-    query = "SELECT COUNT(*) FROM users WHERE first_interaction BETWEEN ? AND ?"
+    query = "SELECT COUNT(*) FROM users WHERE first_interaction BETWEEN %s AND %s"
     cursor.execute(query, (start_date, end_date))
     result = cursor.fetchone()[0]
     cursor.close()

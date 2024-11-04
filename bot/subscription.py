@@ -1,17 +1,16 @@
-# subscription.py - Логика работы с подписками
-
 from telegram import Update
 from telegram.ext import ContextTypes
 from bot.subscription_db import SubscriptionDB
 import logging
 from datetime import datetime
+import os
 
 # Настройка логирования
 logger = logging.getLogger(__name__)
 
-# Инициализация базы данных подписок (путь к базе данных необходимо корректировать в соответствии с вашим окружением)
-db_path = "C:/Users/WIN10/Desktop/culinary_bot/bot/subscriptions.db"
-subscription_db = SubscriptionDB(db_path)
+# Инициализация базы данных подписок с использованием переменной окружения DATABASE_URL
+db_url = os.environ.get("DATABASE_URL")
+subscription_db = SubscriptionDB(db_url)
 
 class SubscriptionManager:
     def __init__(self, db: SubscriptionDB):
