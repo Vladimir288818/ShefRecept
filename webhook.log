@@ -1,0 +1,40 @@
+2024-11-17 18:43:49,073 - bot.sub_db - INFO - База данных создана: C:\Users\Dell\Desktop\culinary_bot\bot\data\subscriptions.db
+2024-11-17 18:43:49,105 - bot.sub_db - INFO - Таблицы базы данных успешно созданы/обновлены
+2024-11-17 18:43:49,106 - bot.yookassa_payment - INFO - YooKassa payment system initialized successfully
+2024-11-17 18:43:49,107 - webhooks.yookassa_webhook - INFO - Components initialized successfully
+2024-11-17 18:43:50,043 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.161:8000
+2024-11-17 18:43:50,043 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-17 18:58:40,198 - werkzeug - INFO - 127.0.0.1 - - [17/Nov/2024 18:58:40] "GET /health HTTP/1.1" 200 -
+2024-11-17 19:08:32,213 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.161:8000
+2024-11-17 19:08:32,213 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-18 04:03:25,626 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.161:8000
+2024-11-18 04:03:25,627 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-18 04:41:58,111 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.161:8000
+2024-11-18 04:41:58,111 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-18 11:29:47,443 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.161:8000
+2024-11-18 11:29:47,444 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-19 17:32:43,065 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.161:8000
+2024-11-19 17:32:43,066 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-21 18:33:17,772 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.161:8000
+2024-11-21 18:33:17,772 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
